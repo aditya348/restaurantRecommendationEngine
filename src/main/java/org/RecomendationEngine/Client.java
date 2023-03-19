@@ -9,13 +9,16 @@ import java.util.Date;
 
 public class Client {
     public static void main(String[] args) {
-        RestaurantRecommendationController restaurantRecommendationController = new RestaurantRecommendationController();
+        //Assumptions: While ordering system will check if the user has already ordered for that Cuisine or CostBracket
+        //and the noOfOrders of the existing CuisineTracking or CostTracking object will be increased instead of creating a new object everytime
+
         ArrayList<Restaurant> restaurants = new ArrayList<>();
         restaurants.add(new Restaurant("123", Cuisine.SOUTHINDIAN, CostBracket.TWO,  new Date("01-Mar-2023")));
         restaurants.add(new Restaurant("235", Cuisine.NORTHINDIAN, CostBracket.ONE,  new Date("02-Mar-2023")));
         restaurants.add(new Restaurant("457", Cuisine.CHINESE, CostBracket.FOUR,  new Date("04-Mar-2023")));
         restaurants.add(new Restaurant("658", Cuisine.ITALIAN, CostBracket.ONE,  new Date("21-Mar-2023")));
         restaurants.add(new Restaurant("856", Cuisine.NORTHINDIAN, CostBracket.FIVE,  new Date("15-Mar-2023")));
+
 
         User user = new User();
         user.getCuisines().add(new CuisineTracking(restaurants.get(0).getCuisine(), 1));
@@ -26,6 +29,9 @@ public class Client {
 
         user.getCuisines().add(new CuisineTracking(restaurants.get(4).getCuisine(), 1));
         user.getCostTracking().add(new CostTracking(restaurants.get(4).getCostBracket(), 1));
+
+
+        RestaurantRecommendationController restaurantRecommendationController = new RestaurantRecommendationController();
 
         ArrayList<SortingStrategy> sortingStrategies = new ArrayList<>();
         sortingStrategies.add(new FeaturedRestaurantSortingStrategy());
